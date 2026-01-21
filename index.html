@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hello Kitty Land 🎀</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #f8c8dc, #e6ccff);
+      text-align: center;
+      font-family: "Comic Sans MS", cursive;
+      color: #5a2d82;
+      padding: 40px;
+      overflow-x: hidden;
+    }
+
+    h1 { font-size: 36px; }
+
+    button {
+      background: #ff9acb;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 20px;
+      margin: 6px;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    #score { font-size: 20px; margin-top: 20px; color: #8a2be2; }
+
+    /* floating hearts */
+    .heart {
+      position: absolute;
+      font-size: 24px;
+      animation: float linear infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(-700px) rotate(360deg); }
+    }
+  </style>
+</head>
+
+<body onload="startHearts(); alert('Hey cutu 💜🐱')">
+
+<!-- MUSIC -->
+<audio id="bgm" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+<button onclick="toggleMusic()">🎵 Play / Pause Music</button>
+<br><br>
+
+<h1>Hello Kitty Land 🎀</h1>
+
+<!-- CUTE TASK BUTTONS -->
+<button onclick="alert('You are officially cute 💕')">💖 Compliment Button</button>
+<br><br>
+<button onclick="alert('Drink water bestie 💧')">🧃 Drink Water Task</button>
+<br><br>
+<button onclick="alert('Smile right now 😭💗')">😊 Smile Task</button>
+<br><br>
+<button onclick="alert('Hello Kitty sends you hugs 🐱🎀')">🤍 Kitty Hug</button>
+
+<!-- MINI TAP GAME -->
+<p id="score">Score: 0</p>
+<button onclick="addScore()">🎀 Tap Me 🎀</button>
+
+<script>
+/* MUSIC */
+function toggleMusic() {
+  let music = document.getElementById("bgm");
+  if (music.paused) { music.play(); } else { music.pause(); }
+}
+
+/* TAP GAME */
+let score = 0;
+function addScore() {
+  score++;
+  document.getElementById("score").innerText = "Score: " + score;
+}
+
+/* FLOATING HEARTS ANIMATION */
+function startHearts() {
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "💖";
+    heart.style.left = Math.random() * 90 + "vw";
+    heart.style.top = "100vh";
+    heart.style.fontSize = (14 + Math.random() * 24) + "px";
+    heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 7000);
+  }, 800);
+}
+</script>
+
+</body>
+</html>
